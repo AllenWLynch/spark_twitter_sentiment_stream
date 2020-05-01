@@ -10,7 +10,7 @@ The first step in an ML project is procuring data, and in this instance, I could
 
 Work by <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296">Novak et al.</a> provided the information necessary to synthesize "emojified" Tweets, as they collected 1.6 million modern samples, classified their sentiments, and reported the statistical distributions of emoji presence. For each emoji, their frequency in the overall corpus was reported, as well as the proportion of these appearances that were in positive, neutral, and negative Tweets. Thus, I was provided P(sentiment | emoji), but to synthesize data, I would need P(emoji | sentiment). Applying Baye's rule, I found the probability of each emoji appearing in a Tweet given that Tweet's sentiment: 
 
-<div style="text-align:center"><i>P(emoji | sentiment) = P(sentiment | emoji) * P(emoji) / P(sentiment)</i></div>
+<div style="text-align:center"><i>P(emoji | sentiment) = P(sentiment | emoji) * P(emoji) / P(sentiment)</i></div><br>
 
 I stochasically appended emojis to Tweets in the Sentiment140 dataset according to their distribution in modern tweets, then divided the synthesized data into a train and test set, leaving their provided validation set unaltered. Some (cherry-picked) emojified results are shown below. The emojis often do not correspond with the text semantically, but their sentiments seem plausible. Since I am building a statistical model and often these models assume independence between features, the content's relation to the emoji is not an important factor to consider.
 
@@ -32,7 +32,7 @@ For my choice of model, I sought speed, simplicity, and statistical interpretabi
 Besides model choice, text featurization plays a huge role in classifier accuracy. Various preprocessing and modelling techniques I benchmarked are outlined below:
 
 | Model | Featurization | test AUC |
-|-------|---------------|-----------------------|----------------|-----|
+|-------|---------------|-----------------------|
 | Logistic Regression | adaptive bigrams -> stopword removal -> TF-IDF | 0.885
 | Logistic Regression | tokenized -> stopword removal -> stemming -> TF-IDF | 0.833 |
 | Logistic Regression | tokenized -> bigrams -> TF-IDF | 0.806 |
