@@ -32,7 +32,7 @@ For my choice of model, I sought speed, simplicity, and statistical interpretabi
 Besides model choice, text featurization plays a huge role in classifier accuracy. Various preprocessing and modelling techniques I benchmarked are outlined below:
 
 | Model | Featurization | test AUC |
-|-------|---------------|-----------------------|----------------|-----|
+|-------|---------------|-----------------------|
 | Logistic Regression | adaptive bigrams -> stopword removal -> TF-IDF | 0.885
 | Logistic Regression | tokenized -> stopword removal -> stemming -> TF-IDF | 0.833 |
 | Logistic Regression | tokenized -> bigrams -> TF-IDF | 0.806 |
