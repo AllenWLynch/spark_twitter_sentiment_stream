@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.Normalizer","timestamp":1588346905013,"sparkVersion":"3.0.0-preview2","uid":"Normalizer_09e7699774cc","paramMap":{"outputCol":"tf_normalized","p":1.0,"inputCol":"counts"},"defaultParamMap":{"outputCol":"Normalizer_09e7699774cc__output","p":2.0}}

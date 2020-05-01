@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.SQLTransformer","timestamp":1588366398887,"sparkVersion":"3.0.0-preview2","uid":"SQLTransformer_6c6f6333a3c3","paramMap":{"statement":"SELECT *, CONCAT(filtered, emojis) AS bag FROM __THIS__"},"defaultParamMap":{}}
