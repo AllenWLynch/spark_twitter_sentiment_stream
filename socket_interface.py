@@ -111,9 +111,6 @@ def manage_connection(endpoint, output_queue, authorization, pause_time = 1.0):
 			time.sleep(pause_time)
 
 #%%
-#manage_connection('https://stream.twitter.com/1.1/statuses/sample.json?language=en', BACKOFFS, output_fn=preprocess_tweet_json)
-
-#%%
 date_format = "Mon May 06 20:01:29 +0000 2019"
 #%%
 #link to spark through tcp port
@@ -163,15 +160,12 @@ def send_to_spark(tcp_ip, tcp_port, attenuation, queue):
 		if not queue.empty():
 			send = preprocess_tweet_json(queue.get())
 			connection.send((send+'\n').encode())
-			#send = queue.get()
-			#connection.send(send + '\n'.encode())
 			tweets_collected += 1
 			print('\rTweets streamed: {}'.format(str(tweets_collected)), end = '')
 			
 
 if __name__ == "__main__":
 
-	#%%
 	AUTHORIZATION = requests_oauthlib.OAuth1(api_keys.API_KEY, api_keys.API_SECRET_KEY, api_keys.ACCESS_TOKEN, api_keys.ACCESS_SECRET_TOKEN)
 
 	API_ENDPOINT = 'https://stream.twitter.com/1.1/statuses/sample.json?language=en'
@@ -182,7 +176,6 @@ if __name__ == "__main__":
 	stream_process.daemon = True
 
 	tcp_process = Process(target = send_to_spark, args= ('localhost', 9009, 0, datafeed_queue))
-	#tcp_process.daemon = True
 
 	tcp_process.start()
 	stream_process.start()

@@ -1,1 +1,1 @@
-{"class":"custom_transformer.EmojiExtractor","timestamp":1588367878532,"sparkVersion":"3.0.0-preview2","uid":"EmojiExtractor_f7bbe60145f7","paramMap":{"inputCol":"text","outputCol":"emojis"},"defaultParamMap":{"outputCol":"EmojiExtractor_f7bbe60145f7__output"}}
+{"class":"custom_transformer.EmojiExtractor","timestamp":1588441968791,"sparkVersion":"3.0.0-preview2","uid":"EmojiExtractor_f7bbe60145f7","paramMap":{"inputCol":"text","outputCol":"emojis"},"defaultParamMap":{"outputCol":"EmojiExtractor_f7bbe60145f7__output"}}

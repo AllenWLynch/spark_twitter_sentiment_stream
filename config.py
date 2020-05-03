@@ -22,7 +22,7 @@ PORT = 9009
 #model params
 POS_THRESHOLD = 0.66
 NEG_THRESHOLD = 0.33
-MODEL_NAME = 'adaptive_bigram_pipeline'
+MODEL_NAME = 'LR_with_emoji_pipeline'
 
 EMOJI_PATTERN = (u"(["
         u"\U0001F600-\U0001F64F"  # emoticons
