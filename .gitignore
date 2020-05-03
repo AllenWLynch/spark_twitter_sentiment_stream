@@ -3,3 +3,6 @@ adaptive_bigram_pipeline/
 __pycache__/
 spark-warehouse/
 spark_checkpoints/
+output/
+.vscode/
+.ipynb_checkpoints/
