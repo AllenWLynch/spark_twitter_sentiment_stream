@@ -7,7 +7,8 @@ import json
 import time
 import api_keys
 from multiprocessing import Process, Queue
-import random
+import config
+import argparse
 
 #%%
 class StreamError(Exception):
@@ -162,23 +163,34 @@ def send_to_spark(tcp_ip, tcp_port, attenuation, queue):
 			connection.send((send+'\n').encode())
 			tweets_collected += 1
 			print('\rTweets streamed: {}'.format(str(tweets_collected)), end = '')
-			
+
+parser = argparse.ArgumentParser(description='Launch Twitter to Spark TCP socket interface.')
+parser.add_argument("key", type = str, help = 'Twitter API key')
+parser.add_argument("secretkey", type = str, help = "Twitter API secret key")
+parser.add_argument("accesstoken", type = str, help = "Twitter access token")
+parser.add_argument("secrettoken", type = str, help = "Twitter secret access token")
+parser.add_argument("--queuelen", "-q" ,type = int, default=400, help= "Length of queue for http reader. Default is 400.")
+parser.add_argument("--endpoint", "-e", type = str, default='https://stream.twitter.com/1.1/statuses/sample.json?language=en',
+	help = "Twitter endpoint to stream. Default is Twitter sample endpoint (low volume).")
+parser.add_argument("--port", "-p", type = int, default=9009, help ="TCP socket port number. Default is 9009.")
+parser.add_argument("--ip", "-i", type = str, default = "localhost", help = "TCP socket destination IP. Default is localhost.")
 
 if __name__ == "__main__":
 
-	AUTHORIZATION = requests_oauthlib.OAuth1(api_keys.API_KEY, api_keys.API_SECRET_KEY, api_keys.ACCESS_TOKEN, api_keys.ACCESS_SECRET_TOKEN)
+	args = parser.parse_args()
+	assert(args.queuelen > 0), 'queuelen argument must be greater than 0.'
+	assert(args.port > 0), 'port argument must be greater than 0.'
 
-	API_ENDPOINT = 'https://stream.twitter.com/1.1/statuses/sample.json?language=en'
+	AUTHORIZATION = requests_oauthlib.OAuth1(args.key, args.secretkey, args.accesstoken, args.secrettoken)
 
-	datafeed_queue = Queue(100)
-	#endpoint, output_queue, authorization
-	stream_process = Process(target = manage_connection, args  = (API_ENDPOINT, datafeed_queue, AUTHORIZATION))
+	datafeed_queue = Queue(args.queuelen)
+
+	stream_process = Process(target = manage_connection, args  = (args.endpoint, datafeed_queue, AUTHORIZATION))
 	stream_process.daemon = True
 
-	tcp_process = Process(target = send_to_spark, args= ('localhost', 9009, 0, datafeed_queue))
+	tcp_process = Process(target = send_to_spark, args= (args.ip, args.port, 0, datafeed_queue))
 
 	tcp_process.start()
 	stream_process.start()
 
 	tcp_process.join()
-	stream_process.join()

@@ -55,11 +55,11 @@ Hyperparameter tuning occured during model selection, but the last step in prepa
 To convert my binary logistic regression classifier into a three-label predictor, I added two threshold values as model paramters. For a Tweet to be classified as negative, the model must yield a probability less than the first threshold, and for positive classification, above the second threshold. All Tweets falling between the thresholds will be classified neutral. I used gridsearch over the parameter spaces of the neutral and positive classification thresholds to maximize multiclass F-score, which gave values of 0.41 and 0.71 for the thresholds, respectively. The result of these trinary classification thresholds is shown in the confusion matrix in Figure 2.
 
 <div style="float:left">
-<div style="text-align:center"><img src="ROC.svg"><i><br>Figure 1.</i></div>
+<div style="text-align:center"><img src="images/ROC.svg"><i><br>Figure 1.</i></div>
 </div>
 
 <div style="float:right">
-<div style="text-align:center"><img src="confusion_matrix.png"><i><br>Figure 2.</i></div>
+<div style="text-align:center"><img src="images/confusion_matrix.png"><i><br>Figure 2.</i></div>
 </div>
 <div style="clear:both">
 
@@ -69,12 +69,12 @@ The stream is packaged as two execution files, which spin up three seperatre pro
 
 Aggregation occurs while streaming over 1-minute intervals, and groups Tweets with the same hashtags and locations to reduce space requirements for storing individual Tweets, which could number over 2.5 million per day from the sample stream endpoint.
 
-<img src="pipeline.png" width="1000px"><br><i>Figure 3.</i>
+<img src="images/pipeline.png" width="1000px"><br><i>Figure 3.</i>
 
 ## App Architecture
 
 I am working to integrate this pipeline with an interactive dashboard for analyzing Twitter sentiment in real time. My architecture is shown in Figure 4, and relies heavily on modern deployment technologies like containerization and Azure cloud services. This approach is scalable, though as long as I stay connected to the lower-throughput Twitter sample stream endpoint, I should not need a huge amount of CPU power to run the pipeline. 
 
-<img src="app_architecture.png" width="600px"><br><i>Figure 4.</i>
+<img src="images/app_architecture.png" width="600px"><br><i>Figure 4.</i>
 
 <hr>

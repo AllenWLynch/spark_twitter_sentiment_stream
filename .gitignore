@@ -6,3 +6,6 @@ spark_checkpoints/
 output/
 .vscode/
 .ipynb_checkpoints/
+launch_socket.sh
+twitterkeys.txt
+notebooks/

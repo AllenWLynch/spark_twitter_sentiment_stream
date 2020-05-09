@@ -1,1 +1,0 @@
-{"class":"pyspark.ml.pipeline.PipelineModel","timestamp":1588441967632,"sparkVersion":"3.0.0-preview2","uid":"PipelineModel_1b73ceb60e34","paramMap":{"stageUids":["PipelineModel_03b04870c1cf","LogisticRegression_dddcdda2d8f9"],"language":"Python"},"defaultParamMap":{}}
