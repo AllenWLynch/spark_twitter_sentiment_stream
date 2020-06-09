@@ -2,7 +2,9 @@
 # Twitter Sentiment Stream with Spark
 <hr>
 
-This repository contains the components needed to deploy an advanced sentiment classification model onto the public Twitter sample stream, and handles connecting, processing, classification, and storage with fast and fault-tolerant Spark and multiprocessing solutions.
+This repository contains the components needed to deploy an advanced sentiment classification model onto the public Twitter sample stream, and handles connecting, processing, classification, and storage with fast and fault-tolerant Spark and multiprocessing solutions. In local mode, this stream can be fed to a real-time analytics dashboard, shown below:
+
+<img src="assets/twittervibe_home.png" style="width:700px">
 
 - [Twitter Sentiment Stream with Spark](#twitter-sentiment-stream-with-spark)
   - [Training Data Synthesis](#training-data-synthesis)
